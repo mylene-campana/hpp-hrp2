@@ -29,7 +29,9 @@ SETUP_PROJECT()
 
 FINDPYTHON()
 ADD_REQUIRED_DEPENDENCY ("hpp-corbaserver >= 3")
-INSTALL(FILES ${PROJECT_SOURCE_DIR}/src/hpp/corbaserver/hrp2/robot.py
+INSTALL(FILES
+  ${PROJECT_SOURCE_DIR}/src/hpp/corbaserver/hrp2/robot.py
+  ${PROJECT_SOURCE_DIR}/src/hpp/corbaserver/hrp2/__init__.py
   DESTINATION ${PYTHON_SITELIB}/hpp/corbaserver/hrp2
 )
 SETUP_PROJECt_FINALIZE()
