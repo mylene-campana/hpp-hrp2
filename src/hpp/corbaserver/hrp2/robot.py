@@ -16,7 +16,7 @@
 # hpp-corbaserver.  If not, see
 # <http://www.gnu.org/licenses/>.
 
-from hpp.corbaserver.robot import Robot as Parent
+from hpp.corbaserver.robot import HumanoidRobot as Parent
 
 class Robot (Parent):
     packageName = "hrp2_14_description"
@@ -70,9 +70,8 @@ class Robot (Parent):
          "RLEG_JOINT5": 0.0
          }
 
-    def __init__ (self):
-        Parent.__init__ (self, "freeflyer", self.packageName, self.urdfName,
-                         self.urdfSuffix, self.srdfSuffix)
+    def __init__ (self, robotName):
+        Parent.__init__ (self, robotName, "freeflyer")
 
     def getInitialConfig (self):
         q = []
