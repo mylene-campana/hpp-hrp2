@@ -72,6 +72,10 @@ class Robot (Parent):
 
     def __init__ (self, robotName):
         Parent.__init__ (self, robotName, "freeflyer")
+        self.rightWrist = "RARM_JOINT5"
+        self.leftWrist  = "LARM_JOINT5"
+        self.rightAnkle = "RLEG_JOINT5"
+        self.leftAnkle  = "LLEG_JOINT5"
 
     def getInitialConfig (self):
         q = []
