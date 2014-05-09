@@ -90,10 +90,7 @@ class Robot (Parent):
                 "LHAND_JOINT2": 0.0,
                 "LHAND_JOINT3": 0.0,
                 "LHAND_JOINT4": 0.0}
-        res = []
-        for name, value in dofs.iteritems ():
-            res.append ((self.rankInConfiguration [name], value))
-        return res
+        return dofs
 
     def rightHandClosed (self) :
         dofs = {"RARM_JOINT6": 0.1,
@@ -102,7 +99,4 @@ class Robot (Parent):
                 "RHAND_JOINT2": 0.0,
                 "RHAND_JOINT3": 0.0,
                 "RHAND_JOINT4": 0.0}
-        res = []
-        for name, value in dofs.iteritems ():
-            res.append ((self.rankInConfiguration [name], value))
-        return res
+        return dofs
