@@ -70,8 +70,8 @@ class Robot (Parent):
          "RLEG_JOINT5": 0.0
          }
 
-    def __init__ (self, robotName):
-        Parent.__init__ (self, robotName, "freeflyer")
+    def __init__ (self, robotName, load = True):
+        Parent.__init__ (self, robotName, "freeflyer", load)
         self.rightWrist = "RARM_JOINT5"
         self.leftWrist  = "LARM_JOINT5"
         self.rightAnkle = "RLEG_JOINT5"
