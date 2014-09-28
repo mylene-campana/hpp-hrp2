@@ -24,9 +24,7 @@ class Robot (Parent):
     urdfSuffix = ""
     srdfSuffix = ""
     halfSitting = \
-        {"base_joint_x": 0.0,
-         "base_joint_y": 0.0,
-         "base_joint_z": 0.648702,
+        {"base_joint_xyz": (0.0, 0.0, 0.648702),
          "base_joint_SO3": (1.0, 0.0, 0.0, 0.0),
          "CHEST_JOINT0": 0.0,
          "CHEST_JOINT1": 0.0,
