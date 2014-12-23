@@ -23,10 +23,9 @@ class Robot (Parent):
     urdfName = "hrp2_14"
     urdfSuffix = ""
     srdfSuffix = ""
+    rootJointType = "freeflyer"
     halfSitting = \
-        {"base_joint_x": 0.0,
-         "base_joint_y": 0.0,
-         "base_joint_z": 0.648702,
+        {"base_joint_xyz": (0.0, 0.0, 0.648702),
          "base_joint_SO3": (1.0, 0.0, 0.0, 0.0),
          "CHEST_JOINT0": 0.0,
          "CHEST_JOINT1": 0.0,
@@ -70,18 +69,27 @@ class Robot (Parent):
          "RLEG_JOINT5": 0.0
          }
 
-    def __init__ (self, robotName):
-        Parent.__init__ (self, robotName, "freeflyer")
+    ## Constructor
+    # \param compositeName name of the composite robot that will be built later,
+    # \param robotName name of the first robot that is loaded now,
+    def __init__ (self, compositeName, robotName):
+        Parent.__init__ (self, compositeName, robotName, self.rootJointType)
         hs = self.halfSitting.copy ()
         for joint, value in hs.iteritems ():
-            self.halfSitting [self.robotName + "/" + joint] = value
-        self.rightWrist = self.robotName + "/RARM_JOINT5"
-        self.leftWrist  = self.robotName + "/LARM_JOINT5"
-        self.rightAnkle = self.robotName + "/RLEG_JOINT5"
-        self.leftAnkle  = self.robotName + "/LLEG_JOINT5"
-        self.waist = self.robotName + "/base_joint_SO3"
-        self.chest = self.robotName + "/CHEST_JOINT1"
-        self.gaze = self.robotName + "/HEAD_JOINT1"
+            self.halfSitting [self.displayName + "/" + joint] = value
+        self.rightWrist = self.displayName + "/RARM_JOINT5"
+        self.leftWrist  = self.displayName + "/LARM_JOINT5"
+        self.rightAnkle = self.displayName + "/RLEG_JOINT5"
+        self.leftAnkle  = self.displayName + "/LLEG_JOINT5"
+        self.waist = self.displayName + "/base_joint_SO3"
+        self.chest = self.displayName + "/CHEST_JOINT1"
+        self.gaze = self.displayName + "/HEAD_JOINT1"
+
+    ## Virtual function to load the robot model
+    def loadModel (self, robotName, rootJointType):
+        self.loadHumanoidModel \
+            (robotName, rootJointType, self.packageName, self.urdfName,
+             self.urdfSuffix, self.srdfSuffix)
 
     def getInitialConfig (self):
         q = []
@@ -98,19 +106,19 @@ class Robot (Parent):
         return q
 
     def leftHandClosed (self) :
-        dofs = {self.robotName + "/LARM_JOINT6": 0.1,
-                self.robotName + "/LHAND_JOINT0": 0.0,
-                self.robotName + "/LHAND_JOINT1": 0.0,
-                self.robotName + "/LHAND_JOINT2": 0.0,
-                self.robotName + "/LHAND_JOINT3": 0.0,
-                self.robotName + "/LHAND_JOINT4": 0.0}
+        dofs = {self.displayName + "/LARM_JOINT6": 0.1,
+                self.displayName + "/LHAND_JOINT0": 0.0,
+                self.displayName + "/LHAND_JOINT1": 0.0,
+                self.displayName + "/LHAND_JOINT2": 0.0,
+                self.displayName + "/LHAND_JOINT3": 0.0,
+                self.displayName + "/LHAND_JOINT4": 0.0}
         return dofs
 
     def rightHandClosed (self) :
-        dofs = {self.robotName + "/RARM_JOINT6": 0.1,
-                self.robotName + "/RHAND_JOINT0": 0.0,
-                self.robotName + "/RHAND_JOINT1": 0.0,
-                self.robotName + "/RHAND_JOINT2": 0.0,
-                self.robotName + "/RHAND_JOINT3": 0.0,
-                self.robotName + "/RHAND_JOINT4": 0.0}
+        dofs = {self.displayName + "/RARM_JOINT6": 0.1,
+                self.displayName + "/RHAND_JOINT0": 0.0,
+                self.displayName + "/RHAND_JOINT1": 0.0,
+                self.displayName + "/RHAND_JOINT2": 0.0,
+                self.displayName + "/RHAND_JOINT3": 0.0,
+                self.displayName + "/RHAND_JOINT4": 0.0}
         return dofs
