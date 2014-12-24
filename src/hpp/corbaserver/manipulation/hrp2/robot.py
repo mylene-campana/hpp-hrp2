@@ -122,3 +122,21 @@ class Robot (Parent):
                 self.displayName + "/RHAND_JOINT3": 0.0,
                 self.displayName + "/RHAND_JOINT4": 0.0}
         return dofs
+
+    def leftHandOpened (self) :
+        dofs = {self.displayName + "/LARM_JOINT6": 0.75,
+                self.displayName + "/LHAND_JOINT0": -0.75,
+                self.displayName + "/LHAND_JOINT1": 0.75,
+                self.displayName + "/LHAND_JOINT2": -0.75,
+                self.displayName + "/LHAND_JOINT3": 0.75,
+                self.displayName + "/LHAND_JOINT4": -0.75}
+        return dofs
+
+    def rightHandOpened (self) :
+        dofs = {self.displayName + "/RARM_JOINT6": 0.75,
+                self.displayName + "/RHAND_JOINT0": -0.75,
+                self.displayName + "/RHAND_JOINT1": 0.75,
+                self.displayName + "/RHAND_JOINT2": -0.75,
+                self.displayName + "/RHAND_JOINT3": 0.75,
+                self.displayName + "/RHAND_JOINT4": -0.75}
+        return dofs
